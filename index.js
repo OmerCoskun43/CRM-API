@@ -33,7 +33,7 @@ app.use(require("./src/middlewares/findSearchSortPage"));
 
 //! ROUTES
 
-app.get("/", (req, res) => {
+app.all("/", (req, res) => {
   res.send({
     Project: "Crm API",
     Created: "Omer Coskun",
