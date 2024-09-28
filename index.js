@@ -9,7 +9,7 @@ require("express-async-errors");
 app.use(cors());
 
 //! ENV VARIABLES
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "127.0.0.1";
 
 //! DB CONNECTION
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //? LOGGER
-app.use(require("./src/middlewares/logger"));
+// app.use(require("./src/middlewares/logger"));
 //? JSON verilerini işlemek için yerleşik middleware
 
 //? AUTHENTICATION
