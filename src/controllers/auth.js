@@ -39,7 +39,7 @@ module.exports = {
         profilePic: user.profilePic,
       },
       process.env.ACCESS_KEY,
-      { expiresIn: "30m" }
+      { expiresIn: "90m" }
     );
 
     const refreshToken = jwt.sign(
@@ -57,6 +57,8 @@ module.exports = {
       });
     }
 
+    await User.findByIdAndUpdate(user._id, { isLoggedIn: true });
+
     res.status(200).send({
       error: false,
       message: "User logged in successfully",
@@ -72,6 +74,7 @@ module.exports = {
         isActive: user.isActive,
         departmentId: user.departmentId,
         profilePic: user.profilePic,
+        isLoggedIn: true,
       },
     });
   },
@@ -87,6 +90,9 @@ module.exports = {
         return next(new Error("Token not found or already deleted"));
       }
     }
+
+    const decoded = jwt.verify(tokenKey[1], process.env.ACCESS_KEY);
+    await User.findByIdAndUpdate(decoded._id, { isLoggedIn: false });
 
     res.status(200).send({
       error: false,

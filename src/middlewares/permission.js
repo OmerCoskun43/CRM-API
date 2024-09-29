@@ -35,9 +35,6 @@ module.exports = {
   },
 
   isLeadOrAdmin: (req, res, next) => {
-    console.log(req.user);
-    console.log("department id", req.user.departmentId);
-    console.log("params", req.params.id);
     if (
       req.user &&
       req.user.isActive &&
