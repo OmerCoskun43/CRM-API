@@ -9,7 +9,7 @@ module.exports = {
   list: async (req, res) => {
     let data;
     if (req.user.isAdmin) {
-      data = await res.getModelList(Customer);
+      data = await res.getModelList(Customer, {}, "departmentId");
     } else {
       data = await res.getModelList(Customer, { _id: req.user._id });
     }
@@ -27,7 +27,7 @@ module.exports = {
 
     if (!name || !email || !userId) {
       res.errorStatusCode = 400;
-      return next(new Error("Please fill name, email and UserId"));
+      return next(new Error("Please fill name, email and UserId and"));
     }
 
     const user = await User.findById(userId);
@@ -39,7 +39,7 @@ module.exports = {
 
     const customer = await Customer.create({
       ...req.body,
-      departmentId: user.departmentId,
+      departmentId: user.departmentId || req.body.departmentId,
     });
 
     res.status(201).send({
