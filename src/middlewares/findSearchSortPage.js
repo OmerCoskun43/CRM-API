@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
   // URL?page=3&limit=10
   let limit = Number(req.query?.limit);
   // console.log(limit)
-  limit = limit > 0 ? limit : Number(process.env.PAGE_SIZE || 20);
+  limit = limit > 0 ? limit : Number(process.env.PAGE_SIZE || 100);
   // console.log(typeof limit, limit)
 
   let page = Number(req.query?.page);
