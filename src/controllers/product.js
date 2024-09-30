@@ -6,7 +6,7 @@ const { mongoose } = require("../configs/dbConnection");
 
 module.exports = {
   list: async (req, res) => {
-    const data = await res.getModelList(Product);
+    const data = await res.getModelList(Product, {}, "categoryId");
 
     res.status(200).send({
       error: false,
