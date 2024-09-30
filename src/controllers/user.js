@@ -43,6 +43,7 @@ module.exports = {
       ...req.body,
       isAdmin: false,
       isLead: false,
+      isLoggedIn: true,
       profilePic: req.file && `/uploads/${req.file.filename}`,
     });
 

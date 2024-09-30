@@ -4,6 +4,7 @@ const passwordEncrypt = require("../helpers/passwordEncrypt");
 const Token = require("../models/token");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const sendMail = require("../helpers/sendMail");
 
 module.exports = {
   login: async (req, res, next) => {
@@ -57,7 +58,18 @@ module.exports = {
       });
     }
 
-    await User.findByIdAndUpdate(user._id, { isLoggedIn: true });
+    if (user.isAdmin) {
+      sendMail({
+        to: user.email,
+        subject: "Giris Yapildi",
+        html: `<h1>${user.name} adli kullanıcı oturum actı. Admin yetkisi ile oturum açıldı siz değilseniz IT departmanına başvurunuz.</h1>`,
+      });
+    }
+
+    await User.findByIdAndUpdate(user._id, {
+      isLoggedIn: true,
+      lastLogin: new Date(),
+    });
 
     res.status(200).send({
       error: false,
