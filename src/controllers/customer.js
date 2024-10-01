@@ -49,7 +49,7 @@ module.exports = {
     });
   },
 
-  read: async (req, res) => {
+  read: async (req, res, next) => {
     if (!req.params.id) {
       res.errorStatusCode = 400;
       return next(new Error("Please provide Customer id"));
@@ -75,7 +75,7 @@ module.exports = {
     });
   },
 
-  update: async (req, res) => {
+  update: async (req, res, next) => {
     if (!req.params.id) {
       res.errorStatusCode = 400;
       return next(new Error("Please provide Customer id"));

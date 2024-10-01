@@ -7,7 +7,10 @@ const { mongoose } = require("../configs/dbConnection");
 
 module.exports = {
   list: async (req, res) => {
-    const sales = await res.getModelList(Sale, {}, "productId");
+    const sales = await res.getModelList(Sale, {}, [
+      { path: "customerId" },
+      { path: "productId" },
+    ]);
 
     if (!sales) {
       return res.status(404).send({
