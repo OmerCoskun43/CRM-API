@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   list: async (req, res) => {
-    const data = await res.getModelList(User);
+    const data = await res.getModelList(User, {}, "departmentId");
 
     res.status(200).send({
       error: false,
