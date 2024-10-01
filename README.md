@@ -1,4 +1,4 @@
-<div style="background-color: #f4f4f4; padding: 20px; border-radius: 8px;">
+
     <h1 style="text-align: center; color: #4A90E2;">CRM Project</h1>
 
     <p style="font-size: 1.1em; line-height: 1.5;">A Customer Relationship Management (CRM) system built with <strong>Node.js</strong>, <strong>Express</strong>, and <strong>MongoDB</strong>. This backend solution facilitates efficient management of customer data, products, sales, and tasks, enabling businesses to enhance their customer interactions and improve operational efficiency.</p>
@@ -31,4 +31,4 @@
         <li><strong>Morgan:</strong> HTTP request logging middleware for Node.js.</li>
         <li><strong>Nodemailer:</strong> For sending emails from the application.</li>
     </ul>
-</div>
+
