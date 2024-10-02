@@ -40,7 +40,7 @@ module.exports = {
         profilePic: user.profilePic,
       },
       process.env.ACCESS_KEY,
-      { expiresIn: "90m" }
+      { expiresIn: "120m" }
     );
 
     const refreshToken = jwt.sign(
