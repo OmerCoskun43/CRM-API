@@ -7,7 +7,10 @@ const { mongoose } = require("../configs/dbConnection");
 
 module.exports = {
   list: async (req, res) => {
-    const tasks = await res.getModelList(Task);
+    const tasks = await res.getModelList(Task, {}, [
+      { path: "customerId" },
+      { path: "userId" },
+    ]);
     res.status(200).send({
       error: false,
       message: "List of tasks",
