@@ -50,7 +50,6 @@ const SaleSchema = new mongoose.Schema(
     totalProfit: {
       type: Number,
       required: true,
-      min: 0,
       default: 0, // Başlangıçta 0
     },
   },
