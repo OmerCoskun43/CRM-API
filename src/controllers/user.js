@@ -103,7 +103,9 @@ module.exports = {
       return next(new Error("Please provide user id"));
     }
 
-    const user = await User.findOne({ _id: req.params.id });
+    const user = await User.findOne({ _id: req.params.id }).populate(
+      "departmentId"
+    );
 
     if (!user) {
       res.errorStatusCode = 404;
@@ -140,7 +142,7 @@ module.exports = {
         new: true, // Güncellenmiş kullanıcıyı döndür
         runValidators: true, // Validatorları çalıştır
       }
-    );
+    ).populate("departmentId");
 
     if (!user) {
       res.errorStatusCode = 404;

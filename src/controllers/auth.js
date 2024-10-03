@@ -15,7 +15,9 @@ module.exports = {
       return next(new Error("Please fill email and password"));
     }
 
-    const user = await User.findOne({ email, password });
+    const user = await User.findOne({ email, password }).populate(
+      "departmentId"
+    );
     if (!user) {
       res.errorStatusCode = 404;
       return next(new Error("User not found"));
@@ -36,7 +38,8 @@ module.exports = {
         isAdmin: user.isAdmin,
         isLead: user.isLead,
         isActive: user.isActive,
-        departmentId: user.departmentId,
+        departmentId: user.departmentId?._id,
+        departmentName: user.departmentId?.name,
         profilePic: user.profilePic,
       },
       process.env.ACCESS_KEY,
