@@ -125,9 +125,11 @@ module.exports = {
       return next(new Error("Please provide user id"));
     }
 
+    const userOld = await User.findOne({ _id: req.params.id });
+
     const updateData = {
       ...req.body,
-      isAdmin: false,
+      isAdmin: userOld.isAdmin || false,
       isLead: false,
     };
 
